@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>学IT - 后台管理系统</title>
+    <?php include('./views/common/style.html')?>
+    <link rel="stylesheet" href="./views/assets/uploadify/uploadify.css">
+</head>
+<body>
+    
+    <!-- 侧边栏 -->
+    <?php include( './views/common/aside.html' ) ?>
+    <!-- 主体 -->
+    <div class="main">
+        <div class="container-fluid">
+            <!-- 头部 -->
+            <?php include('./views/common/header.html')?>
+            <!-- 讲师资料 -->
+            <div class="body teacher-profile">
+                <div class="settings">
+                    <!--动态数据-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <?php include('./views/common/script.html')?>
+    <script type="text/template" id="settingsTpl">
+        <form class="form-horizontal">
+            {{if tc_id}}
+            <input type="hidden" value={{tc_id}} name="tc_id">
+            {{/if}}
+            <div class="form-group">
+                <label class="col-md-3 control-label">姓名</label>
+                <div class="col-md-5">
+                    <p class="form-control-static">{{tc_name}}</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label">头像</label>
+                <div class="col-md-2 preview">
+                    <img src="{{tc_avatar||'/views/images/default.png'}}" id="upfileView">
+                    <input type="file" id="upfile">
+                    <div class="cover">
+                        <i class="fa fa-upload"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label">昵称</label>
+                <div class="col-md-5">
+                    <input type="text" class="form-control input-sm"
+                           value={{tc_roster}}
+                           name="tc_roster">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label">性别</label>
+                <div class="col-md-3">
+                    <label class="radio-inline">
+                        <input type="radio" value="0" {{tc_gender==0?'checked':''}} name="tc_gender"> 男
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" value="1" {{tc_gender==1?'checked':''}} name="tc_gender"> 女
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label">出生日期</label>
+                <div class="col-md-5">
+                    <input type="text" class="form-control input-sm datepicker"
+                           value="{{tc_birthday}}"
+                           name="tc_birthday"
+                           data-provide="datepicker"
+                           data-date-format="yyyy-mm-dd"
+                           data-required
+                           data-discribedby="for_tc_birthday"
+                           data-description="required">
+                    <div id="for_tc_birthday"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label">籍贯</label>
+                <div class="col-md-5" id="hometown">
+                    <select name="tc_name" class="form-control input-sm" id="p"
+                            data-id="{{tc_province}}"
+                            data-required
+                            data-discribedby="for_tc_province"
+                            data-description="required">
+                        <div id="for_tc_province"></div>
+                        <option value="">请选择省</option>
+                    </select>
+                    <select name="tc_city" class="form-control input-sm" id="c"
+                            data-id="{{tc_city}}"
+                            data-required
+                            data-discribedby="for_tc_city"
+                            data-description="required">
+                        <div id="for_tc_city"></div>
+                        <option value="">请选择市</option>
+                    </select>
+                    <select name="tc_district" class="form-control input-sm" id="d"
+                            data-id="{{tc_district}}"
+                            data-required
+                            data-discribedby="for_tc_district"
+                            data-description="required">
+                        <div id="for_tc_district"></div>
+                        <option value="">请选择县</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label">手机号码</label>
+                <div class="col-md-5">
+                    <input type="text" class="form-control input-sm" name="tc_cellphone" value="{{tc_cellphone}}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label">电子邮箱</label>
+                <div class="col-md-5">
+                    <input type="text" class="form-control input-sm" name="tc_email" value="{{tc_email}}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label">入职日期</label>
+                <div class="col-md-5">
+                    <input type="text" class="form-control input-sm datepicker"
+                           value="{{tc_join_date}}"
+                           name="tc_join_date"
+                           data-provide="datepicker"
+                           data-date-format="yyyy-mm-dd">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label">个人介绍</label>
+                <div class="col-md-5 ckeditor">
+                    <textarea rows="15" class="form-control input-sm"
+                              id="tc_introduce"
+                              name="tc_introduce">{{@ tc_introduce}}</textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-8">
+                    <input type="submit" class="btn btn-success btn-sm pull-right" value="保存">
+                    <a href="/course/repass" class="btn btn-link btn-sm pull-right">更改密码？</a>
+                </div>
+            </div>
+        </form>
+    </script>
+    <script>
+        require(['settings'])
+    </script>
+</body>
+</html>

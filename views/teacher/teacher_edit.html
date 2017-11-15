@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>学IT - 后台管理系统</title>
+    <?php include('./views/common/style.html')?>
+    <link rel="stylesheet" href="./views/asstes/bootstrap-datepicker/css/bootstrap-datepicker3.css">
+</head>
+<body>
+    
+    <!-- 侧边栏 -->
+    <?php include( './views/common/aside.html' ) ?>
+    <!-- 主体 -->
+    <div class="main">
+        <div class="container-fluid">
+            <!-- 头部 -->
+            <?php include('./views/common/header.html')?>
+            <div class="body teacher">
+                <!-- 面包屑 -->
+                <ol class="breadcrumb">
+                    <li><a href="javascript:;">讲师管理</a></li>
+                    <li class="active">讲师修改</li>
+                </ol>
+                <div class="teacher-add">
+                   <!--动态数据-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <?php include('./views/common/script.html')?>
+
+    <script type="text/template" id="teacherEdit">
+        <form class="form-horizontal col-md-offset-2" id="teacherEditForm">
+        {{ if tc_id }}
+            <input type="hidden" name="tc_id" value="{{ tc_id }}">
+        {{ /if }}
+            <div class="form-group">
+                <label class="col-md-3 control-label">姓名</label>
+                <div class="col-md-4">
+                    <input type="text" class="form-control input-sm"
+                           placeholder="讲师名称" value="{{tc_name}}"
+                           name="tc_name"
+                           data-required
+                           data-description="required"
+                           data-describedby="for_tc_name">
+                    <div id="for_tc_name"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label">密码</label>
+                <div class="col-md-4">
+                    <input type="password" class="form-control input-sm"
+                           data-required
+                           data-description="required"
+                           data-describedby="for_tc_pass">
+                    <span id="for_tc_pass"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label">入职时间</label>
+                <div class="col-md-4">
+                    <input type="text" class="form-control input-sm datepicker"
+                           value="{{tc_join_date}}"
+                           name="tc_join_date"
+                           data-provide="datepicker"
+                           data-date-format="yyyy-mm-dd"
+                           data-required
+                           data-description="required"
+                           data-describedby="for_tc_join_date">
+                    <div id="for_tc_join_date"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label">类型</label>
+                <div class="col-md-2">
+                    <select class="form-control input-sm">
+                        <option value="1" {{tc_type==1?'selected':''}} name="tc_type">讲师</option>
+                        <option value="0" {{tc_type==0?'selected':''}} name="tc_type">管理员</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label">性别</label>
+                <div class="col-md-4">
+                    <label class="radio-inline">
+                        <input type="radio" value="0" {{tc_gender-0===0?'checked':''}} name="tc_gender"> 男
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" value="1" {{tc_gender-0===1?'checked':''}} name="tc_gender"> 女
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-7">
+                    <input type="submit" class="btn btn-success btn-sm pull-right" value="修改">
+                </div>
+            </div>
+        </form>
+    </script>
+
+    <script>
+        require(['teacherEdit'])
+    </script>
+
+</body>
+</html>

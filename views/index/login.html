@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>学IT - 后台管理系统</title>
+    <?php include('./views/common/style.html')?>
+</head>
+<body>
+    <!-- 登录 -->
+    <div class="login">
+        <div class="login-wrap">
+            <div class="avatar">
+                <img src="/views/uploads/monkey.png" class="img-circle" alt="">
+            </div>
+            <form class="col-md-offset-1 col-md-10" id="formId">
+                <div class="input-group input-group-lg">
+                    <span class="input-group-addon">
+                        <i class="fa fa-user"></i>
+                    </span>
+                    <input type="text" class="form-control" placeholder="用户名" name="tc_name" id="userName">
+                </div>
+                <div class="input-group input-group-lg">
+                    <span class="input-group-addon">
+                        <i class="fa fa-key"></i>
+                    </span>
+                    <input type="password" class="form-control" placeholder="密码" name="tc_pass" id="pass">
+                </div>
+                <input type="submit" class="btn btn-lg btn-primary btn-block" value="登&nbsp;&nbsp;录">
+            </form>
+        </div>
+    </div>
+
+    <?php include('./views/common/script.html')?>
+    <script>
+        require(['login'])
+    </script>
+</body>
+</html>

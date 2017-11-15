@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>学IT - 后台管理系统</title>
+    <?php include('./views/common/style.html')?>
+    <link rel="stylesheet" href="./views/asstes/bootstrap-datepicker/css/bootstrap-datepicker3.css">
+</head>
+<body>
+    
+    <!-- 侧边栏 -->
+    <?php include( './views/common/aside.html' ) ?>
+    <!-- 主体 -->
+    <div class="main">
+        <div class="container-fluid">
+            <!-- 头部 -->
+            <?php include('./views/common/header.html')?>
+            <div class="body teacher">
+                <!-- 面包屑 -->
+                <ol class="breadcrumb">
+                    <li><a href="javascript:;">讲师管理</a></li>
+                    <li class="active">讲师添加</li>
+                </ol>
+                <div class="teacher-add">
+                    <form class="form-horizontal col-md-offset-2" id="addTeacherForm">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">姓名</label>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control input-sm"
+                                       placeholder="讲师名称"
+                                       name="tc_name"
+                                       data-required
+                                       data-description="required"
+                                       data-describedby="for_tc_name">
+                                <div id="for_tc_name"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">密码</label>
+                            <div class="col-md-4">
+                                <input type="password" class="form-control input-sm"
+                                       name="tc_pass"
+                                       data-required
+                                       data-description="required"
+                                       data-describedby="for_tc_pass">
+                                <div id="for_tc_pass"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">昵称</label>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control input-sm"
+                                       name="tc_roster"
+                                       data-required
+                                       data-description="required"
+                                       data-describedby="for_tc_roster">
+                                <div id="for_tc_roster"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">入职时间</label>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control input-sm datepicker"
+                                       name="tc_join_date"
+                                       data-provide="datepicker"
+                                       data-date-format="yyyy-mm-dd"
+                                       data-required
+                                       data-description="required"
+                                       data-describedby="for_tc_join_date">
+                                <div id="for_tc_join_date"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">类型</label>
+                            <div class="col-md-2">
+                                <select name="tc_type" class="form-control input-sm">
+                                    <option value="1">讲师</option>
+                                    <option value="0">管理员</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">性别</label>
+                            <div class="col-md-4">
+                                <label class="radio-inline">
+                                    <input type="radio" value="0" checked name="tc_gender"> 男
+                                </label>
+                                <label class="radio-inline" name="tc_gender">
+                                    <input type="radio" value="1" name="tc_gender"> 女
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-7">
+                                <!--<a href="/advert/advert_list"> 添 加 </a>-->
+                                <input type="submit" class="btn btn-success btn-sm pull-right" id="btn_addTeacher" value="添加">
+                            </div>                          
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <?php include('./views/common/script.html')?>
+    <script>
+        require(['teacherAdd']);
+    </script>
+</body>
+</html>
